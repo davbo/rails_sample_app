@@ -7,6 +7,7 @@ gem 'sqlite3', '1.3.4'
 gem "pg", "~> 0.15.1"
 gem "cf-autoconfig", "~> 0.2.1"
 gem 'rails_12factor', group: :production
+gem 'prometheus-client'
 ruby '2.1.9'
 
 group :development do

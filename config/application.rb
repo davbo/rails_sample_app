@@ -2,6 +2,10 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'rack'
+require 'prometheus/middleware/collector'
+require 'prometheus/middleware/exporter'
+
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
@@ -39,5 +43,9 @@ module SampleApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     ActionController::Base.config.relative_url_root = ''
+
+    config.middleware.use Prometheus::Middleware::Collector
+    config.middleware.use Prometheus::Middleware::Exporter
+
   end
 end
